@@ -40,11 +40,17 @@ the number of iterations!"""
 numberofbestones = 3
 
 
+"""Select if you want to use random staple sequences (=True) or if you prefer predefined sequences (=False).
+These predefined sequences can be specified below."""
+use_random_staples = True
+
+
 """The minimum repeat length for repetitive motifs of the scaffold sequence can be chosen here
 (default is 12 and we do not recommend to change it)."""
 minRepeatLength = 12
 
 
+"""Here the staple length and the sequences can be specified."""
 staples = (56, 63, 70, 77)
 stapleVersions = ((56.1, 56.2), (63.1, 63.2), (70.1, 70.2), (77.1, 77.2))
 stapleVersionColors = ((0x8F0000, 0xDB4D4D), # red
@@ -52,13 +58,12 @@ stapleVersionColors = ((0x8F0000, 0xDB4D4D), # red
 					   (0x006B24, 0x33AD5C), # green
 					   (0x660080, 0xD633FF)) # purple
 
+
 polyTStaples = (38,)
 polyTStapleVersions = ((38.1, 38.2),)
 polyTStapleVersionColors = ((0xFF9900, 0x005CE6),) #orange and blue
 
 
-
-use_random_staples = True
 
 if use_random_staples:
 	stapleVersionSeqs = main.generateRandomSeqs(staples, stapleVersions)

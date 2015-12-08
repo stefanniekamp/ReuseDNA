@@ -49,7 +49,7 @@ These three scripts represent the different numbers of taples to use for a desig
 3. The number of best design(s) in terms of degree of repetitivness in scaffold sequence ranked from lowest to highest that should be shown (say you chose 1000 iterations then you might want to know which 10 of these 1000 designs/sequences are the best and what their degree of repetitivness is)
 4. If you want to use predefined staple sequences or random sequences
 5. The minimum repeat length for repetitive motifs (default is 12 and we do not recommend to change it)
-6. Staple lengths and color
+6. Staple lengths and color (Note: The staple length has to be a multiple of 7. More details below in "requirement for cadnano / json-file")
 
 #####2. How to modify these input parameters?  
 
@@ -84,7 +84,7 @@ It will look like this
 
 #####3. What is the input (requirement for cadnano/json file)?
 
-...
+As of now, the script only works for the honeycomb lattices. 
 
 #####4. What is the output? 
 
