@@ -39,7 +39,7 @@ This custom python script consists basically of four parts (a more detailed desc
 
 ------------------
 
-Below (Figure 1), we are showing an example result where we used 
+Below (Figure 1), we are showing an example result where we used 10 different staple sequences and:
 
 1. cadnanoFile = "Example_json-files/24helix.json"
 2. numTests = 1000 (= iterations)
