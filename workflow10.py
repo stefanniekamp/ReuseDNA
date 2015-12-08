@@ -64,6 +64,7 @@ else:
 
 
 
+
 (permutations, allStartBases, sequences, repeatData) = main.main(cadnanoFile, step,
 										staples, stapleVersions, stapleVersionSeqs,
 										polyTStaples, polyTStapleVersions, polyTStapleVersionSeqs,
@@ -133,5 +134,5 @@ print "Best design(s) in terms of degree of repetitivness in scaffold sequence: 
 
 plt.plot(repetetivnessnonsorted, 'ro')
 plt.xlabel('Number of design', fontsize=12)
-plt.ylabel('Degree of repetitivness in scaffold sequence', fontsize=12)
+plt.ylabel('Degree of repetitiveness in scaffold sequence', fontsize=12)
 plt.show()                      

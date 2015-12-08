@@ -18,7 +18,7 @@ Using [caDNAno](https://github.com/sdouglas/cadnano2), a computer-aided design t
 
 ####Userguide:
 
-This custom python script consists basically of four parts:
+This custom python script consists basically of four parts (a more detailed description about each module can be found in the four scripts themselves):
 
 1. **random_staple_sequence_generator.py**: This script calculates random staple (oligonucleotide) sequences if desired. In addition to generating these sequences this part also has a 'cleanup' function where sequences can be specified that should be avoided. As of now these sequences are:
 	A.  aaaaa = 'AAAAA'
@@ -30,8 +30,34 @@ This custom python script consists basically of four parts:
 	G.  SacI = 'GAGCTC'
     H.  BtsCI = 'GGATG'
     I.  BtsCIComplement = 'CCTAC'
-2. 	**Staple_breaking_and_sequence_analysis.py**: 
+2. 	**Staple_breaking_and_sequence_analysis.py**: This script supervises the staple breaking (it calls staple_combinations.py) and finally analyses the repetitiveness of the final scaffold sequences. Therefore it uses an external script (see external folder (sequence was obtained from [https://code.google.com/p/py-rstr-max/](https://code.google.com/p/py-rstr-max/))). 
+3. 	**staple_combinations.py**: This script generates the various staple combinations for Staple_breaking_and_sequence_analysis.py
+4. 	**workflow10.py**: This is the main script that calls all other scripts. This is the only one that needs to be modified for application to custom design. A description of how that is done is provided below.
+
+
+
+
+------------------
+
+Below (Figure 1), we are showing an example result where we used 
+
+1. cadnanoFile = "Example_json-files/24helix.json"
+2. numTests = 1000 (= iterations)
+3. Random staple sequences = True
+4. minRepeatLength = 12
+
+
+| [![](Example_json-files/10Lcd-24helix-random-1000-iter-56-77.png?raw=true =580x)](Example_json-files/10Lcd-24helix-random-1000-iter-56-77.png) |
+|:-:|
+|  Figure 1: Example output - Degree of repetitiveness for scaffold sequences for each of the 1000 designs.|
+
+----------------
+
+####Contact:
+
+For questions please contact: [stefan.niekamp@ucsf.edu](stefan.niekamp@ucsf.edu)
 	
+
 	
     
 
