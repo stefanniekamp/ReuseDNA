@@ -49,6 +49,7 @@ def checkScaffoldCorrectness(s):
 #end def
 
 def cleanup(s):
+"'cleanup' function where sequences can be specified that should be avoided"
     aaaaa = 'AAAAA'
     ccccc = 'CCCCC'
     ggggg = 'GGGGG'
