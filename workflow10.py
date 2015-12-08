@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import Staple_breaking_and_sequence_analysis as main
 import random_staple_sequence_generator as random_staple_sequences
 
-
 outputFolder = "cadnano_and_sequence-files/"
 if not os.path.exists(outputFolder):
     os.makedirs(outputFolder)
@@ -17,20 +16,34 @@ if not os.path.exists(tempicklefolder):
 
 picklefile = "temppickle/temppickle.p"
 
+
+"""------------------------------------------------------------------------------------"""
+#########################################################################
+###                                                                   ###
+###        """This is the area where you can make changes."""         ###
+###                                                                   ###
+#########################################################################
+
+"""Here the input location for the cadnano / json-file can be specified. Default is 24 helix bundle.""" 
 cadnanoFile = "Example_json-files/24helix.json"
-numTests = 10
+
+
+"""Here the number of iterations / number of different versions that will be generated can be specified. Default is 1000."""
+numTests = 1000
+
+
+"""Here the number of best design(s) in terms of degree of repetitivness in scaffold sequence 
+ranked from lowest to highest can be specified (say you chose 1000 iterations then 
+you might want to know which 10 of these 1000 designs/sequences are the best and what 
+their degree of repetitivness is). NOTE: This number always has to be smaller or equal to
+the number of iterations!"""
 numberofbestones = 3
 
-if numberofbestones > numTests:
-	print "The number of iterations for different designs has to be equal to or larger than the number of best versions. Try again."
-	quit()
 
-
-
-
+"""The minimum repeat length for repetitive motifs of the scaffold sequence can be chosen here
+(default is 12 and we do not recommend to change it)."""
 minRepeatLength = 12
 
-step = 7
 
 staples = (56, 63, 70, 77)
 stapleVersions = ((56.1, 56.2), (63.1, 63.2), (70.1, 70.2), (77.1, 77.2))
@@ -63,17 +76,20 @@ else:
 						 "AACAGCTGGCCATTGCAGGGTATGCCCATAGACGCGAA"),)                  
 				  
 
+"""Do not make any changes below here!"""
+"""------------------------------------------------------------------------------------"""
 
+step = 7
 
+if numberofbestones > numTests:
+	print "The number of iterations for different designs has to be equal to or larger than the number of best versions. Try again."
+	quit()
 
 (permutations, allStartBases, sequences, repeatData) = main.main(cadnanoFile, step,
 										staples, stapleVersions, stapleVersionSeqs,
 										polyTStaples, polyTStapleVersions, polyTStapleVersionSeqs,
 										numTests, minRepeatLength)
 										
-
-
-
 
 with open(picklefile, "w") as pickleoutputfile:
 	pickle.dump([permutations, allStartBases, sequences, stapleVersionSeqs, polyTStapleVersionSeqs], pickleoutputfile)
@@ -131,7 +147,7 @@ lowestrepnumberrepetitivness = []
 for i in range(numberofbestones):
 	lowestrepnumber.append(repetetivnessnonsorted.index(repetetivness[i]))
 	lowestrepnumberrepetitivness.append(repetetivness[i])
-print "Best design(s) in terms of degree of repetitivness in scaffold sequence: " + str(lowestrepnumber).strip('[]') + " - rancked from lowest to highest with the following degree(s) of repetitivness: " + str(lowestrepnumberrepetitivness).strip('[]')
+print "Best design(s) in terms of degree of repetitivness in scaffold sequence: " + str(lowestrepnumber).strip('[]') + " - ranked from lowest to highest with the following degree(s) of repetitivness: " + str(lowestrepnumberrepetitivness).strip('[]')
 
 plt.plot(repetetivnessnonsorted, 'ro')
 plt.xlabel('Number of design', fontsize=12)
