@@ -36,7 +36,9 @@ This custom python script consists basically of four parts (a more detailed desc
 
 ####How to use the script?
 
-The first thing you need to do is to download the folder from github. Then you can modify the script so that it runs with your specific settings. Here, you only need to make shanges in the workflow10.py,  workflow15.py, or workflow20.py script. 
+The first thing you need to do is to download the folder from github. You will also need python installed on your computer in order to run the scripts. 
+
+Then you can modify the script so that it runs with your specific settings. Here, you only need to make shanges in the workflow10.py,  workflow15.py, or workflow20.py script. 
 
 #####1. Which parameters can be chosen? 
 
@@ -86,22 +88,34 @@ It will look like this
 
 #####4. What is the output? 
 
-
-
-
-------------------
-
-Below (Figure 1), we are showing an example result where we used 10 different staple sequences and:
+Below in Figure 1 we are showing an example result where we used 10 different staple sequences and:
 
 1. cadnanoFile = "Example_json-files/24helix.json"
 2. numTests = 1000 (= iterations)
-3. Random staple sequences = True
-4. minRepeatLength = 12
+3. numberofbestones = 10
+4. Random staple sequences = True
+5. minRepeatLength = 12
+6. Staple lengths (each twice): 38, 56, 63, 70, 77
 
 
 | [![](Example_json-files/10Lcd-24helix-random-1000-iter-56-77.png?raw=true =580x)](Example_json-files/10Lcd-24helix-random-1000-iter-56-77.png) |
 |:-:|
 |  **Figure 1:** Example output - Degree of repetitiveness for scaffold sequences for each of the 1000 designs.|
+
+In addition the output will be the following text in your terminal: "*...*"  and the json as well as sequence files for all 1000 versiosn are saved in the "cadnano_and_sequence-files" folder.
+
+We recommend to look at the 10 best versions in cadnano and then pick one.
+
+#####5. Run the script
+
+Just open a terminal and go to the directory where you saved the folder with all the scripts. Then type:
+
+	python workflow10.py
+	
+Click enter. Depending on the cadnano file and the number of iterations as well as your computational power the script might run for a while. On my Mac with a 2.5 GHz processor and 8GB 1600 MHz DDR3 Memory 1000 iterations for the 24 helix bundle takes about an hour.  
+
+If you just want to see if the script is running properly use the example cadnano / json-files which are provided in the "Example_json-files" folder.
+
 
 ----------------
 
