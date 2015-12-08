@@ -17,7 +17,7 @@ if not os.path.exists(tempicklefolder):
 
 picklefile = "temppickle/temppickle.p"
 
-cadnanoFile = "24helix.json"
+cadnanoFile = "Example_json-files/24helix.json"
 numTests = 10
 numberofbestones = 3
 if numberofbestones > numTests:
