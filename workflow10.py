@@ -20,6 +20,7 @@ picklefile = "temppickle/temppickle.p"
 cadnanoFile = "Example_json-files/24helix.json"
 numTests = 10
 numberofbestones = 3
+
 if numberofbestones > numTests:
 	print "The number of iterations for different designs has to be equal to or larger than the number of best versions. Try again."
 	quit()
