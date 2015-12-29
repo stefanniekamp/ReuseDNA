@@ -18,7 +18,7 @@ Using [caDNAno](https://github.com/sdouglas/cadnano2), a computer-aided design t
 
 ###Userguide:
 
-This custom python script consists basically of four parts (a more detailed description about each module can be found in the four scripts themselves):
+This custom Python script consists basically of four parts (a more detailed description about each module can be found in the four scripts themselves):
 
 1. **random_staple_sequence_generator.py**: This script calculates random staple (oligonucleotide) sequences if desired. In addition to generating these sequences this part also has a 'cleanup' function where sequences can be specified that should be avoided. As of now these sequences are:
 	A.  aaaaa = 'AAAAA'
@@ -36,19 +36,19 @@ This custom python script consists basically of four parts (a more detailed desc
 
 ####How to use the script?
 
-The first thing you need to do is to download the folder from github. You will also need python installed on your computer in order to run the scripts. 
+The first thing you need to do is to download the folder from github. You will also need Python installed on your computer in order to run the scripts. 
 
 Then you can modify the script so that it runs with your specific settings. Here, you only need to make shanges in the workflow10.py,  workflow15.py, or workflow20.py script. 
 
 #####1. Which parameters can be chosen? 
 
-These three scripts represent the different numbers of taples to use for a design. The parameters that can be changed besides the number of staples are:
+These three scripts represent the different numbers of staples to use for a design. The parameters that can be changed besides the number of staples are:
 
 1. The input cadnano / json-file
 2. The number of iterations that should be used (= number of different versions that will be generated and you can chose from)
 3. The number of best design(s) in terms of degree of repetitivness in scaffold sequence ranked from lowest to highest that should be shown (say you chose 1000 iterations then you might want to know which 10 of these 1000 designs/sequences are the best and what their degree of repetitivness is)
 4. If you want to use predefined staple sequences or random sequences
-5. The minimum repeat length for repetitive motifs (default is 12 and we do not recommend to change it)
+5. The minimum repeat length for repetitive motifs (default is 12 and we do not recommend to change it (at least not to go lower than 12))
 6. Staple lengths and color (Note: The staple length has to be a multiple of 7. More details below in "requirement for cadnano / json-file")
 
 #####2. How to modify these input parameters?  

@@ -29,7 +29,7 @@ cadnanoFile = "Example_json-files/24helix.json"
 
 
 """Here the number of iterations / number of different versions that will be generated can be specified. Default is 1000."""
-numTests = 1000
+numTests = 10
 
 
 """Here the number of best design(s) in terms of degree of repetitivness in scaffold sequence 
@@ -46,22 +46,41 @@ use_random_staples = True
 
 
 """The minimum repeat length for repetitive motifs of the scaffold sequence can be chosen here
-(default is 12 and we do not recommend to change it)."""
+(default is 12 and we do not recommend to change it (at least not to go lower than 12))."""
 minRepeatLength = 12
 
 
-"""Here the staple length and the sequences can be specified."""
+"""If you picked random staple sequences above, then you are done here! Otherwise 
+(for predefined sequences) you can specify length and sequences of staples below."""  
+
+
+"""Here the staple length and the sequences can be specified below (only if you picked 
+'use_random_staples = False' above. """
 staples = (56, 63, 70, 77)
 stapleVersions = ((56.1, 56.2), (63.1, 63.2), (70.1, 70.2), (77.1, 77.2))
-stapleVersionColors = ((0x8F0000, 0xDB4D4D), # red
-					   (0x999900, 0xE6E600), # yellow
-					   (0x006B24, 0x33AD5C), # green
-					   (0x660080, 0xD633FF)) # purple
+stapleVersionColors = ((0xb72525, 0xDB4D4D), # red  #e88d8d  #db4ddb
+					   (0xcdcd00, 0xffff1a), # yellow #e6e600 #EFFE81
+					   (0x006B24, 0x67cd00), # green #003813 #8dff1a
+					   (0x1a1aff, 0x6767ff)) # blue #0000cd #000081
 
+"""					   
+"""Here the staple length and the sequences can be specified below (only if you picked 
+'use_random_staples = False' above. """
+staples = (56, 56, 63, 63, 70, 70, 77, 77)
+stapleVersions = ((56.1,), (56.1,), (63.1,), (63.1,), (70.1,), (70.1,), (77.1,), (77.1,))
+stapleVersionColors = ((0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,), # red  #e88d8d  #db4ddb
+					   (0xb72525,),) # red  #e88d8d  #db4ddb
+"""
 
 polyTStaples = (38,)
 polyTStapleVersions = ((38.1, 38.2),)
-polyTStapleVersionColors = ((0xFF9900, 0x005CE6),) #orange and blue
+polyTStapleVersionColors = ((0xFF9900, 0xb36b00),) #orange #ffb84d #673d00
 
 
 

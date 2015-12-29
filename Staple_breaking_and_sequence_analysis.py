@@ -14,6 +14,11 @@ import staple_combinations as combinations
 import random_staple_sequence_generator as random_staple_sequences
 
 
+"""This script supervises the staple breaking (it calls staple_combinations.py) and 
+finally analyses the repetitiveness of the final scaffold sequences. Therefore it uses 
+an external script (see external folder (sequence was obtained 
+from [https://code.google.com/p/py-rstr-max/](https://code.google.com/p/py-rstr-max/)))."""
+
 
 def main(cadnanoFile, step, staples, stapleVersions, stapleVersionSeqs,
          polyTStaples, polyTStapleVersions, polyTStapleVersionSeqs, numTests, minRepeatLength):

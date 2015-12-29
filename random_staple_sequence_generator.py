@@ -5,6 +5,10 @@ import sys
 import os
 import random
 
+"""This script calculates random staple (oligonucleotide) sequences if desired. 
+In addition to generating these sequences this part also has a 'cleanup' function 
+where sequences can be specified that should be avoided."""
+
 def main(length):
     HindIII = 'AAGCTT'
     BamHI = 'GGATCC'
@@ -49,7 +53,6 @@ def checkScaffoldCorrectness(s):
 #end def
 
 def cleanup(s):
-"'cleanup' function where sequences can be specified that should be avoided"
     aaaaa = 'AAAAA'
     ccccc = 'CCCCC'
     ggggg = 'GGGGG'
