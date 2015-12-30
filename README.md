@@ -72,7 +72,7 @@ It will look like this
 
 
 	"""Here the number of best design(s) in terms of degree of repetitivness in scaffold sequence ranked from lowest to highest can be specified (say you chose 1000 iterations then you might want to know which 10 of these 1000 designs/sequences are the best 	and what their degree of repetitivness is). NOTE: This number always has to be smaller or equal to the number of iterations!"""
-	numberofbestones = 3
+	numberofbestones = 10
 
 
 	"""Select if you want to use random staple sequences (=True) or if you prefer predefined sequences (=False). These predefined sequences can be specified below."""
@@ -81,30 +81,106 @@ It will look like this
 
 	"""The minimum repeat length for repetitive motifs of the scaffold sequence can be chosen here (default is 12 and we do not recommend to change it)."""
 	minRepeatLength = 12
+	
+
+	"""Here the staple length can be specified below. NOTE: Every length will be used twice (will have two different sequences) for the design with 10 unique staple sequences."""
+	StapleLength01 = 56
+	StapleLength02 = 63
+	StapleLength03 = 70
+	StapleLength04 = 77
+	PolyTStapleLength = 38
+
+
+	"""Here the sequences can be specified below (only if you picked 'use_random_staples = False' above. NOTE: Every staple length will be used twice (will have two different sequences). Thus, Seq01 and Seq02 are the sequences for StapleLength01, Seq03 and Seq04 are the sequences for StapleLength02, ..."""
+	Seq01 = "GAGTTTTACGTCTAGTCTCCGCTACAAATGGAGTCACGAAATAGGGCACCATCGTC"
+	Seq02 = "TAGCCTCTCAGTGTAGTTAAGATTTAGGAGTTCGCAACTGTGAGGACTTCGTGCGA"
+	Seq03 = "TACGTGCATTCGCTTTGGAGGCATTCTCGCTTCCAAACCATCGATGTTTACGTAGGCGCTGTT"
+	Seq04 = "GACAAATATCTTCTGCACAAATCCCGTCAGAGAGCCGCGTGTACTGGATTTATCGGCCGACAT"
+	Seq05 = "CATAATACTCATATGTGATGCTCGAAACTGCTGAACGGTGTTAACTGCTATGAAGACCATAAGTCATGAC"
+	Seq06 = "CGCGCACCCATCCGCCCTATTGAAACGGGTTGTTGCGAAGCGTAAGGAGCACAGCGAGGGGCGGGAGCGC"
+	Seq07 = "ATACAAGCAATCCACGCCGACCGGCCGATCGAAAGGACGGTCATATACCCGTATTGTCCTGTTAGTCAAACTGGGAC"
+	Seq08 = "ACAATCCACGGCAAATACTCCTGATGATCATATGCACGGTCTCCTTCGCTCGCAGGCCTCAACAACCGGCCATACTG"
+	Seq09 = "AGCATACGTACCCTGATCCCAGTGTAGATATACAGAAT"
+	Seq10 = "AACAGCTGGCCATTGCAGGGTATGCCCATAGACGCGAA"
 
 #####3. What is the input (requirement for cadnano/json file)?
 
-As of now, the script only works for the honeycomb lattices. 
+As of now, the script only works for the honeycomb lattices. For the cadnano design, there are a few requirements: The first thing is that all staples have to form loops and should not be broken. In addition, we found that the highest folding yield is achieved if you use a high staple crossover density and a lower scaffold crossover density. Thus, use all available staple crossovers when forming loops. For the loop size, larger loops are usually easier to solve and allow for a higher flexibility for staple breaking by the Python script. If loops are too small, it might happen, that there is only a small or a too small solution space, which will either lead to high degree of repetitiveness in scaffold sequences (small space) or cause the script to crash (too small space) since it will not be able to solve the problem. An example for a not successful calculation would be a loop size of 42 bp with a shortest staple length of 56 bp (ignoring the “end piece” staples here”; more about them below). Below you can see what we mean by staple loops.
+
+| [![](Example_json-files/24helixbundle_small-loop-size.png?raw=true =580x)](Example_json-files/24helixbundle_small-loop-size.png) |
+|:-:|
+|  **Figure 1:** Example design for a 24 helix bundle with small loop size (red, 504 bp).|
+
+| [![](Example_json-files/24helixbundle_medium-loop-size.png?raw=true =580x)](Example_json-files/24helixbundle_medium-loop-size.png) |
+|:-:|
+|  **Figure 2:** Example design for a 24 helix bundle with medium loop size (red, 2016 bp).| 
+
+| [![](Example_json-files/24helixbundle_large-loop-size.png?raw=true =580x)](Example_json-files/24helixbundle_large-loop-size.png) |
+|:-:|
+|  **Figure 3:** Example design for a 24 helix bundle with large loop size (red, 5040 bp).|    
+
+Second, for each design you will have "end pieces", meaning the position where a helix ends. For these end pieces you can have different lengths. For the cadnano honeycomb lattice design you will usually have 16 bp, 38 bp, and 58 bp long staples if you use 3 bp on each side of the staple for polyT passivation. We highly recommend to use 38 bp long "end pieces”, which would look like this:
+
+| [![](Example_json-files/end-pieces_polyTpassivation_38bp.png?raw=true =280x)](Example_json-files/end-pieces_polyTpassivation_38bp.png) |
+|:-:|
+|  **Figure 4:** Example "end pieces" for cadnano honeycomb lattice design with polyT passivation (length = 38 bp).|  
+
+If you decide to use "end piece" staples of a different lengths make sure to design them in a similar fashion as we did. This means, use one staple to connect two helices via crossover but never connect more than two helices with "end piece" staples (would cause script to crash). But using "end piece" staples, which are not connected (no crossover; only bound to one helix), works just fine. If you change the length in the cadnano (json) file make sure to adjust the length for polyTstaples in the Python script accordingly.  
 
 #####4. What is the output? 
 
-Below in Figure 1 we are showing an example result where we used 10 different staple sequences and:
+Below in Figure 5 we are showing an example result where we used 10 unique staple sequences and:
 
 1. cadnanoFile = "Example_json-files/24helix.json"
 2. numTests = 1000 (= iterations)
 3. numberofbestones = 10
 4. Random staple sequences = True
 5. minRepeatLength = 12
-6. Staple lengths (each twice): 38, 56, 63, 70, 77
-
+6. Staple lengths (each twice): 56, 63, 70, 77, 38
 
 | [![](Example_json-files/10Lcd-24helix-random-1000-iter-56-77.png?raw=true =580x)](Example_json-files/10Lcd-24helix-random-1000-iter-56-77.png) |
 |:-:|
-|  **Figure 1:** Example output - Degree of repetitiveness for scaffold sequences for each of the 1000 designs.|
+|  **Figure 5:** Example output for design with 10 unique staple sequences - Degree of repetitiveness for scaffold sequences for each of the 1000 designs.|
 
-In addition the output will be the following text in your terminal: "*...*"  and the json as well as sequence files for all 1000 versiosn are saved in the "cadnano_and_sequence-files" folder.
+In addition, the output will be the following text in your terminal: "*Best design(s) in terms of degree of repetitivness in scaffold sequence: 302, 134, 439, 789, 211, 54, 589, 690, 559, 388 - ranked from lowest to highest with the following degree(s) of repetitivness: 0.44455922865013775, 0.46143250688705234, 0.4712465564738292, 0.4758953168044077, 0.48364325068870523, 0.4839876033057851, 0.4852827364518031, 0.48674242424242425, 0.48794765840220383, 0.48829201101928377*"  and the json as well as sequence files for all 1000 versiosn are saved in the "cadnano_and_sequence-files" folder. In Figure 6 you can see an example cadnano file (here version 302). The color scheme is as follows:
+
+A. Shades of red (56 bp long staples)
+B. Shades of yellow (63 bp long staples)
+C. Shades of green (70 bp long staples)
+D. Shades of blue (77 bp long staples)
+E. Shades of orange (38 bp long staples)
+
+| [![](Example_json-files/Example-output-for-24helixbundle_cadnano-design.png?raw=true =580x)](Example_json-files/Example-output-for-24helixbundle_cadnano-design.png) |
+|:-:|
+|  **Figure 6:** Example (version 302) output for design with 10 unique staple sequences - Cadnano plot.|
 
 We recommend to look at the 10 best versions in cadnano and then pick one.
+
+Just for comparison, in Figure 7 you can see the result where we used 15 unique staple sequences and:
+
+1. cadnanoFile = "Example_json-files/24helix.json"
+2. numTests = 1000 (= iterations)
+3. numberofbestones = 10
+4. Random staple sequences = True
+5. minRepeatLength = 12
+6. Staple lengths (each twice): 56, 63, 70, 77, 38
+
+| [![](Example_json-files/15Lcd-24helix-random-1000-iter-56-77.png?raw=true =580x)](Example_json-files/15Lcd-24helix-random-1000-iter-56-77.png) |
+|:-:|
+|  **Figure 7:** Example output for design with 15 unique staple sequences - Degree of repetitiveness for scaffold sequences for each of the 1000 designs.|
+
+And in Figure 8 you can see the result where we used 20 unique staple sequences and:
+
+1. cadnanoFile = "Example_json-files/24helix.json"
+2. numTests = 1000 (= iterations)
+3. numberofbestones = 10
+4. Random staple sequences = True
+5. minRepeatLength = 12
+6. Staple lengths (each twice): 56, 63, 70, 77, 38
+
+| [![](Example_json-files/20Lcd-24helix-random-1000-iter-56-77.png?raw=true =580x)](Example_json-files/20Lcd-24helix-random-1000-iter-56-77.png) |
+|:-:|
+|  **Figure 8:** Example output for design with 20 unique staple sequences - Degree of repetitiveness for scaffold sequences for each of the 1000 designs.|
 
 #####5. Run the script
 
